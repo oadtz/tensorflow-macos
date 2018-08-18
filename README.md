@@ -257,37 +257,14 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 sudo pip install /tmp/tensorflow_pkg/tensorflow-1.5.0-cp36-cp36m-macosx_10_7_x86_64.whl
 ```
 
-ERRORS
+6 Prevent Error
+Download file here: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/nccl/kernels/nccl_ops.cc
+Execute: gcc -c -fPIC nccl_ops.cc -o hello_world.o
+Execute: gcc hello_world.o -shared -o _nccl_ops.so
+Replace the file at Path: tensorflow/contrib/nccl/python/ops
+
+Links
 ======
 
-1 CUDA\_ERROR\_OUT\_OF\_MEMORY
-
-<https://stackoverflow.com/questions/39465503/cuda-error-out-of-memory-in-tensorflow>
-
- <https://stackoverflow.com/questions/43467586/tensorflow-cuda-error-out-of-memory-always-happen>
-
- <https://stackoverflow.com/questions/45546737/cuda-error-out-of-memory-how-to-activate-multiple-gpus-from-keras-in-tensorflow>
-
-```python
-#TensorFlow
-gpu_options = tf.GPUOptions(allow_growth=True) 
-with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-
-#Keras
-import keras.backend as K
-config = K.tf.ConfigProto()
-config.gpu_options.allow_growth = True
-session = K.tf.Session(config=config)
-```
-
-2 PyCharm Library not loaded: @rpath/libcudnn.7.dylib
-
-<https://stackoverflow.com/questions/37933890/tensorflow-gpu-setup-error-with-cuda-on-pycharm>
-
-Add environment variables to python default configuration:
-
- CUDA\_HOME=/usr/local/cuda
-
- DYLD\_LIBRARY\_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
-
- LD\_LIBRARY\_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
+<https://gist.github.com/Willian-Zhang/a3bd10da2d8b343875f3862b2a62eb3b>
+<https://gist.github.com/74th/31eacbbac6351649caa417b19231f09e>
